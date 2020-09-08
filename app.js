@@ -19,13 +19,20 @@ var blogSchema = new mongoose.Schema({
 
 var Blog = mongoose.model("Blog", blogSchema);
 
-Blog.create({
-  title: "Test Blog",
-  image:
-    "https://www.thesprucepets.com/thmb/sfuyyLvyUx636_Oq3Fw5_mt-PIc=/3760x2820/smart/filters:no_upscale()/adorable-white-pomeranian-puppy-spitz-921029690-5c8be25d46e0fb000172effe.jpg",
-  body: "HELLO THIS IS A BLOG POST",
-});
 //RESTFUL ROUTES
+app.get("/", function (req, res) {
+  res.redirect("/blogs");
+});
+
+app.get("/blogs", function (req, res) {
+  Blog.find({}, function (err, blogs) {
+    if (error) {
+      console.log("ERRoR");
+    } else {
+      res.render("index", { blogs: blogs });
+    }
+  });
+});
 
 app.listen(3000, function () {
   console.log("SERVER IS RUNNING");
