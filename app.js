@@ -24,16 +24,17 @@ app.get("/", function (req, res) {
   res.redirect("/blogs");
 });
 
+//INDEX ROUTE
 app.get("/blogs", function (req, res) {
   Blog.find({}, function (err, blogs) {
     if (error) {
-      console.log("ERRoR");
+      console.log("ERRoR!");
     } else {
       res.render("index", { blogs: blogs });
     }
   });
 });
 
-app.listen(3000, function () {
+app.listen(8080, function () {
   console.log("SERVER IS RUNNING");
 });
