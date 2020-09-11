@@ -4,7 +4,11 @@ var express = require("express");
 var app = express();
 
 //APP CONFIG
-mongoose.connect("mongodb://localhost/restful_blog_app");
+// mongoose.connect("mongodb://localhost/restful_blog_app");
+mongoose.connect("mongodb://localhost/restful_blog_app", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,7 +31,7 @@ app.get("/", function (req, res) {
 //INDEX ROUTE
 app.get("/blogs", function (req, res) {
   Blog.find({}, function (err, blogs) {
-    if (error) {
+    if (err) {
       console.log("ERRoR!");
     } else {
       res.render("index", { blogs: blogs });
