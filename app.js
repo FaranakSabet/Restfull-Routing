@@ -32,7 +32,7 @@ app.get("/", function (req, res) {
 app.get("/blogs", function (req, res) {
   Blog.find({}, function (err, blogs) {
     if (err) {
-      console.log("ERRoR!");
+      console.log("ERROR!");
     } else {
       res.render("index", { blogs: blogs });
     }
